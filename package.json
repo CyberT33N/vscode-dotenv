@@ -1,79 +1,85 @@
 {
-    "name": "dotenv",
-    "displayName": "DotENV",
-    "description": "Support for dotenv file syntax",
-    "version": "1.0.1",
-    "publisher": "mikestead",
-    "license": "MIT",
-    "engines": {
-        "vscode": "^1.5.1"
+  "name": "dotenv",
+  "displayName": "DotENV [Secured]",
+  "description": "Support for dotenv file syntax",
+  "version": "1.0.1",
+  "publisher": "CyberT33N",
+  "license": "MIT",
+  "type": "module",
+  "packageManager": "pnpm@11.6.0",
+  "devEngines": {
+    "packageManager": {
+      "name": "pnpm",
+      "version": "11.6.0",
+      "onFail": "error"
     },
-    "categories": [
-        "Languages"
-    ],
-    "keywords": [
-        "env",
-        "dotenv"
-    ],
-    "icon": "images/icon.png",
-    "galleryBanner": {
-        "color": "#3E1661",
-        "theme": "dark"
-    },
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/mikestead/vscode-dotenv.git"
-    },
-    "contributes": {
-        "languages": [
-            {
-                "id": "dotenv",
-                "aliases": [
-                    "Environment Variables",
-                    "dotenv",
-                    "env"
-                ],
-                "extensions": [
-                    ".flaskenv",
-                    ".env",
-                    ".env-sample",
-                    ".env.example",
-                    ".env.local",
-                    ".env.dev",
-                    ".env.dev.local",
-                    ".env.build",
-                    ".env.build.local",
-                    ".env.development",
-                    ".env.development.local",
-                    ".env.test",
-                    ".env.test.local",
-                    ".env.testing",
-                    ".env.qa",
-                    ".env.qa.local",
-                    ".env.uat",
-                    ".env.uat.local",
-                    ".env.stag",
-                    ".env.stag.local",
-                    ".env.stage",
-                    ".env.stage.local",
-                    ".env.staging",
-                    ".env.staging.local",
-                    ".env.live",
-                    ".env.live.local",
-                    ".env.production",
-                    ".env.production.local",
-                    ".env.prod",
-                    ".env.prod.local"
-                ],
-                "configuration": "./language-configuration.json"
-            }
-        ],
-        "grammars": [
-            {
-                "language": "dotenv",
-                "scopeName": "source.env",
-                "path": "./syntaxes/env.tmLanguage"
-            }
-        ]
+    "runtime": {
+      "name": "node",
+      "version": "26.2.0",
+      "onFail": "error"
     }
+  },
+  "engines": {
+    "vscode": "^1.105.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "keywords": [
+    "env",
+    "dotenv"
+  ],
+  "icon": "images/icon.png",
+  "galleryBanner": {
+    "color": "#3E1661",
+    "theme": "dark"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/CyberT33N/vscode-dotenv.git"
+  },
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./dist/extension.js",
+  "scripts": {
+    "typecheck": "tsc --noEmit -p ./tsconfig.json",
+    "watch:typecheck": "tsc --noEmit -p ./tsconfig.json --watch --preserveWatchOutput",
+    "bundle": "node ./esbuild.js",
+    "watch:bundle": "node ./esbuild.js --watch",
+    "bundle:prod": "node ./esbuild.js --production",
+    "package": "pnpm run typecheck && pnpm run bundle:prod && node ./scripts/package-vsix.mjs"
+  },
+  "contributes": {
+    "languages": [
+      {
+        "id": "dotenv",
+        "aliases": [
+          "Environment Variables",
+          "dotenv",
+          "env"
+        ],
+        "filenames": [
+          ".env",
+          ".env-sample",
+          ".flaskenv"
+        ],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "dotenv",
+        "scopeName": "source.env",
+        "path": "./syntaxes/env.tmLanguage"
+      }
+    ]
+  },
+  "devDependencies": {
+    "@types/vscode": "catalog:",
+    "@vscode/vsce": "catalog:",
+    "esbuild": "catalog:",
+    "typescript": "catalog:",
+    "yaml": "catalog:"
+  }
 }

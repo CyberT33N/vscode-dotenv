@@ -1,0 +1,11 @@
+src/**
+scripts/**
+.github/**
+.pnpm/**
+artifacts/**
+node_modules/**
+esbuild.js
+pnpm-lock.yaml
+pnpm-workspace.yaml
+syntaxes/env.YAML-tmLanguage
+tsconfig.json

@@ -1,22 +1,38 @@
 # VSCode .env syntax highlighting
 
-A port of [DotENV](https://github.com/zaynali53/DotENV) for vscode.
+A secured PNPM-based port of [DotENV](https://github.com/zaynali53/DotENV) for VS Code.
 
 ![Example](images/screenshot.png)
 
-### Associate files
+## Supported filenames
 
-If you use specific .env file naming convention (e.g. `.env.jenkins`) you can add dotenv support by setting the `files.associations` setting key as following :
+The extension now handles these names without a hardcoded suffix whitelist:
+
+- `.env`
+- `.env.*` at any depth such as `.env.local`, `.env.production.local`, or `.env.team.shared`
+- `.env-sample`
+- `.flaskenv`
+
+## Custom file associations
+
+If you want to map additional non-dotenv names such as `.secrets` or `.runtime-config`, keep using `files.associations`:
 
 ```json
 "files.associations": {
-    ".env.jenkins": "dotenv"
- }
- ```
- 
- Now, files with name `.env.jenkins` will be handled as dotenv file.
+  ".secrets": "dotenv"
+}
+```
 
-### Acknowledgements
+## Packaging
+
+```bash
+pnpm install
+pnpm run package
+```
+
+This emits the VSIX into `artifacts/vsix/`.
+
+## Acknowledgements
 
 - [Zayn Ali](https://github.com/zaynali53) for [DotENV](https://github.com/zaynali53/DotENV)
 - [motdotla](https://github.com/motdotla/dotenv) for the logo

@@ -1,0 +1,30 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "typecheck",
+      "type": "npm",
+      "script": "typecheck",
+      "problemMatcher": "$tsc"
+    },
+    {
+      "label": "bundle",
+      "type": "npm",
+      "script": "bundle",
+      "problemMatcher": []
+    },
+    {
+      "label": "build",
+      "dependsOn": [
+        "typecheck",
+        "bundle"
+      ],
+      "dependsOrder": "sequence",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "problemMatcher": []
+    }
+  ]
+}
